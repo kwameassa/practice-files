@@ -54,21 +54,32 @@ You now have the repository locally and can open files in an editor or follow yo
 cd ~
 mkdir -p downloads
 cd downloads
-wget https://github.com/kwameassa/practice-files/archive/refs/heads/main.zip -O practice-files.zip
+wget https://github.com/kwameassa/practice-files/archive/refs/heads/main.zip -O "Practice Files.zip"
 ```
 
 2. Unzip the archive and inspect the contents:
 
 ```bash
-unzip practice-files.zip
-cd practice-files-main
+unzip "Practice Files.zip"
+# The archive will extract into a folder named "Practice Files".
+# You can change into that folder directly:
+cd "Practice Files"
 ls -la
 ```
 
-3. (Optional) Move or rename the extracted folder for convenience:
+If you're unsure of the exact folder name created by unzip, you can automatically change into the first directory produced:
 
 ```bash
-mv ~/downloads/practice-files-main ~/projects/practice-files
+# This will `cd` into the first directory in the current folder (the extracted repo folder)
+cd "$(ls -d */ | head -n 1)"
+ls -la
+```
+
+3. (Optional) Move or rename the extracted folder for convenience. The example below moves
+the extracted "Practice Files" folder into `~/projects` and renames it to `practice-files` (no spaces):
+
+```bash
+mv ~/downloads/"Practice Files" ~/projects/practice-files
 cd ~/projects/practice-files
 ```
 
@@ -81,7 +92,8 @@ pwd
 ls -la
 ```
 
-The `pwd` output should end with `practice-files` (or `practice-files-main` if you used the ZIP option). If you cloned with Git you can also check the current commit and branch:
+The `pwd` output should end with `practice-files` (if you cloned) or `Practice Files` (if you used the ZIP option). If you moved/renamed the extracted folder to `~/projects/practice-files` (optional step above) then `pwd` will show `practice-files`.
+If you cloned with Git you can also check the current commit and branch:
 
 ```bash
 git status --short
